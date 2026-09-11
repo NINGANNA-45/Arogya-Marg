@@ -1,0 +1,29 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpwdnl4dHZocWt1bWRpdmJma2NzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4OTA0NjYzMiwiZXhwIjoyMTA0NjIyNjMyfQ.1h58bXqqpIEPed7wFWKEaACG0XvJX79ljChMppLl2i8",
+    "JWT_SECRET": "arogya-marg-super-secret-jwt-key-sih2026"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_SUPABASE_URL": "https://zpvyxtvhqkumdivbfkcs.supabase.co",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpwdnl4dHZocWt1bWRpdmJma2NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwNDY2MzIsImV4cCI6MjEwNDYyMjYzMn0.IGs3Ik3U-B6UE-bjbb3SimorMBHExCpVCozVApTot5E",
+      "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "AIzaSyCIXxqmv0us-e2CsJ140a8leY5k00C2toc",
+      "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpwdnl4dHZocWt1bWRpdmJma2NzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4OTA0NjYzMiwiZXhwIjoyMTA0NjIyNjMyfQ.1h58bXqqpIEPed7wFWKEaACG0XvJX79ljChMppLl2i8",
+      "JWT_SECRET": "arogya-marg-super-secret-jwt-key-sih2026"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    }
+  ]
+}
