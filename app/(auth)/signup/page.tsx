@@ -94,7 +94,7 @@ export default function SignupPage() {
       </div>
 
       {/* Right panel */}
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 flex items-center justify-center p-3.5 sm:p-6">
         <div className="w-full max-w-xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -104,13 +104,13 @@ export default function SignupPage() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25 }}
             >
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold text-clinical-navy mb-2">Create an Account</h2>
-                <p className="text-clinical-muted text-sm mt-1">Register to access the Arogya Marg network</p>
+              <div className="mb-5 sm:mb-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-clinical-navy mb-1.5 sm:mb-2">Create an Account</h2>
+                <p className="text-clinical-muted text-xs sm:text-sm mt-1">Register to access the Arogya Marg network</p>
               </div>
 
               {success ? (
-                <div className="card p-8 flex flex-col items-center justify-center text-center">
+                <div className="card p-6 sm:p-8 flex flex-col items-center justify-center text-center">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
                     <CheckCircle className="w-8 h-8" />
                   </div>
@@ -118,7 +118,7 @@ export default function SignupPage() {
                   <p className="text-clinical-muted">Redirecting you to the login page...</p>
                 </div>
               ) : (
-                <div className="card p-6">
+                <div className="card p-4 sm:p-6">
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     
                     <div className="grid grid-cols-2 gap-4">

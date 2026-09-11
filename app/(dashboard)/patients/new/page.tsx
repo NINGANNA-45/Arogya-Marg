@@ -142,10 +142,10 @@ export default function NewPatientPage() {
 
   return (
     <AppShell title="Add Patient">
-      <div className="p-6 max-w-2xl mx-auto">
+      <div className="p-3 sm:p-6 max-w-2xl mx-auto">
         {/* Progress */}
-        <div className="mb-6">
-          <div className="flex items-center gap-1 mb-3">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center gap-1 mb-2.5 sm:mb-3">
             {STEPS.map((s, i) => (
               <div key={s} className="flex items-center gap-1 flex-1">
                 <div className={`h-1.5 flex-1 rounded-full transition-all ${
@@ -164,23 +164,23 @@ export default function NewPatientPage() {
           <AnimatePresence mode="wait">
             {step === 0 && (
               <motion.div key="step0" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                <div className="card p-6">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-9 h-9 bg-teal-100 rounded-lg flex items-center justify-center">
+                <div className="card p-4 sm:p-6">
+                  <div className="flex items-center gap-3 mb-4 sm:mb-5">
+                    <div className="w-9 h-9 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <User className="w-4.5 h-4.5 text-teal-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-clinical-navy">Basic Identity</h3>
+                      <h3 className="font-semibold text-clinical-navy text-sm sm:text-base">Basic Identity</h3>
                       <p className="text-xs text-clinical-muted">Patient personal information</p>
                     </div>
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-3.5 sm:space-y-4">
                     <div>
                       <label className="label">Full Name *</label>
                       <input {...register("name")} className="input" placeholder="Patient full name" />
                       {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name.message}</p>}
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div>
                         <label className="label">Age *</label>
                         <input {...register("age")} type="number" className="input" placeholder="Age in years" min="0" max="120" />
@@ -197,7 +197,7 @@ export default function NewPatientPage() {
                         {errors.gender && <p className="text-xs text-red-600 mt-1">{errors.gender.message}</p>}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div>
                         <label className="label">Phone</label>
                         <input {...register("phone")} className="input" placeholder="10-digit mobile" type="tel" />

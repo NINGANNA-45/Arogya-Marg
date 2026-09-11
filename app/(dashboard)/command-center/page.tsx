@@ -76,12 +76,12 @@ export default function CommandCenter() {
 
   return (
     <AppShell title="Command Center" subtitle="Pune District / Haveli">
-      <div className="p-6 max-w-[1400px] mx-auto space-y-6">
+      <div className="p-3 sm:p-6 max-w-[1400px] mx-auto space-y-4 sm:space-y-6">
 
         {/* Header question */}
         <div>
-          <h2 className="text-xl font-bold text-clinical-navy">What needs attention now?</h2>
-          <p className="text-sm text-clinical-muted mt-0.5">
+          <h2 className="text-lg sm:text-xl font-bold text-clinical-navy">What needs attention now?</h2>
+          <p className="text-xs sm:text-sm text-clinical-muted mt-0.5">
             Live operational status · Last updated {lastRefresh.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}
             <button onClick={loadData} className="ml-2 text-teal-600 hover:text-teal-700 inline-flex items-center gap-1">
               <RefreshCw className="w-3 h-3" /> Refresh
@@ -90,7 +90,7 @@ export default function CommandCenter() {
         </div>
 
         {/* Priority alerts */}
-        <div className="grid gap-2.5">
+        <div className="grid gap-2 sm:gap-2.5">
           {alerts.map((a, i) => {
             const Icon = a.icon;
             return (
@@ -99,11 +99,13 @@ export default function CommandCenter() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.04 }}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl border ${a.color}`}
+                className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border ${a.color}`}
               >
-                <Icon className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm font-medium flex-1">{a.msg}</span>
-                <Link href={a.href} className="text-xs font-semibold flex items-center gap-1 hover:underline whitespace-nowrap">
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                  <Icon className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium">{a.msg}</span>
+                </div>
+                <Link href={a.href} className="text-xs font-semibold flex items-center gap-1 hover:underline whitespace-nowrap self-end sm:self-auto">
                   {a.action} <ChevronRight className="w-3 h-3" />
                 </Link>
               </motion.div>
@@ -112,7 +114,7 @@ export default function CommandCenter() {
         </div>
 
         {/* KPI row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {[
             { label: "Active Journeys", value: analytics?.active_journeys ?? 18, icon: Heart, color: "text-teal-600", bg: "bg-teal-50" },
             { label: "High-Risk Patients", value: analytics?.high_risk_patients ?? 6, icon: AlertTriangle, color: "text-red-600", bg: "bg-red-50" },
@@ -121,14 +123,14 @@ export default function CommandCenter() {
           ].map((m) => {
             const Icon = m.icon;
             return (
-              <div key={m.label} className="card p-4">
+              <div key={m.label} className="card p-3 sm:p-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-2xl font-bold text-clinical-navy">{m.value}</p>
-                    <p className="text-xs text-clinical-muted mt-0.5 font-medium">{m.label}</p>
+                    <p className="text-xl sm:text-2xl font-bold text-clinical-navy">{m.value}</p>
+                    <p className="text-[11px] sm:text-xs text-clinical-muted mt-0.5 font-medium">{m.label}</p>
                   </div>
-                  <div className={`w-9 h-9 rounded-lg ${m.bg} flex items-center justify-center`}>
-                    <Icon className={`w-4.5 h-4.5 ${m.color}`} />
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg ${m.bg} flex items-center justify-center flex-shrink-0`}>
+                    <Icon className={`w-4 h-4 sm:w-4.5 sm:h-4.5 ${m.color}`} />
                   </div>
                 </div>
               </div>
@@ -139,17 +141,17 @@ export default function CommandCenter() {
         {/* Live care network */}
         <div className="card">
           <div className="card-header flex items-center justify-between">
-            <h3 className="font-semibold text-clinical-navy">Live Care Network</h3>
-            <span className="text-xs text-clinical-muted">Patients flowing through care stages</span>
+            <h3 className="font-semibold text-clinical-navy text-sm sm:text-base">Live Care Network</h3>
+            <span className="text-xs text-clinical-muted hidden sm:inline">Patients flowing through care stages</span>
           </div>
-          <div className="card-body">
-            <div className="flex flex-wrap items-center gap-2">
+          <div className="card-body overflow-x-auto pb-3">
+            <div className="flex items-center gap-2 min-w-max">
               {CARE_STAGES.map((stage, i) => (
                 <div key={stage.label} className="flex items-center gap-2">
-                  <div className="text-center min-w-[90px]">
-                    <div className={`${stage.color} text-white rounded-lg px-3 py-2 text-xs font-semibold`}>
+                  <div className="text-center min-w-[85px] sm:min-w-[90px]">
+                    <div className={`${stage.color} text-white rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs font-semibold`}>
                       {stage.label}
-                      <span className="block text-lg font-bold mt-0.5">
+                      <span className="block text-base sm:text-lg font-bold mt-0.5">
                         {i === 0 ? (analytics?.active_journeys ?? 18) :
                           i === 1 ? 4 : i === 2 ? 3 : i === 3 ? 2 : i === 4 ? 5 : (analytics?.follow_ups_due_today ?? 7)}
                       </span>

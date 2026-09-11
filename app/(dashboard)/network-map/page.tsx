@@ -277,6 +277,8 @@ export default function NetworkMapPage() {
     });
   }, [mapLoaded, facilities, ambulances]);
 
+  const [mobileTab, setMobileTab] = useState<"map" | "list">("map");
+
   const selectedFacility = facilities.find(f => f.id === selectedFacilityId);
   const selectedAmbulance = ambulances.find(a => a.id === selectedAmbulanceId);
 
@@ -287,9 +289,35 @@ export default function NetworkMapPage() {
 
   return (
     <AppShell title="Network Map" subtitle="Pune District · Haveli">
-      <div className="flex h-[calc(100vh-56px)]">
+      {/* Mobile Tab Switcher */}
+      <div className="md:hidden flex border-b border-clinical-border bg-white sticky top-0 z-10">
+        <button
+          onClick={() => setMobileTab("map")}
+          className={`flex-1 py-2.5 text-xs font-semibold text-center border-b-2 transition-colors ${
+            mobileTab === "map"
+              ? "border-teal-600 text-teal-700 bg-teal-50/50"
+              : "border-transparent text-clinical-muted"
+          }`}
+        >
+          🗺️ Live Map
+        </button>
+        <button
+          onClick={() => setMobileTab("list")}
+          className={`flex-1 py-2.5 text-xs font-semibold text-center border-b-2 transition-colors ${
+            mobileTab === "list"
+              ? "border-teal-600 text-teal-700 bg-teal-50/50"
+              : "border-transparent text-clinical-muted"
+          }`}
+        >
+          🏢 Facilities ({filteredFacilities.length})
+        </button>
+      </div>
+
+      <div className="flex flex-col md:flex-row h-[calc(100vh-100px)] md:h-[calc(100vh-56px)] relative">
         {/* Left panel */}
-        <div className="w-72 flex-shrink-0 border-r border-clinical-border bg-white flex flex-col">
+        <div className={`w-full md:w-72 flex-shrink-0 border-r border-clinical-border bg-white flex flex-col ${
+          mobileTab === "list" ? "flex flex-1" : "hidden md:flex"
+        }`}>
           {/* Search */}
           <div className="p-3 border-b border-clinical-border">
             <div className="relative">
@@ -332,6 +360,7 @@ export default function NetworkMapPage() {
                   key={f.id}
                   onClick={() => {
                     selectFacility(f.id);
+                    setMobileTab("map");
                     if (googleMapRef.current) {
                       googleMapRef.current.panTo({ lat: f.lat, lng: f.lng });
                       googleMapRef.current.setZoom(13);
@@ -399,7 +428,7 @@ export default function NetworkMapPage() {
 
         {/* Right context panel */}
         {(selectedFacility || selectedAmbulance) && (
-          <div className="w-72 flex-shrink-0 border-l border-clinical-border bg-white overflow-y-auto">
+          <div className="fixed bottom-0 left-0 right-0 max-h-[55vh] md:relative md:w-72 md:max-h-full md:h-auto flex-shrink-0 border-t md:border-t-0 md:border-l border-clinical-border bg-white overflow-y-auto z-30 shadow-2xl md:shadow-none animate-in slide-in-from-bottom duration-200">
             {selectedFacility && (
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">

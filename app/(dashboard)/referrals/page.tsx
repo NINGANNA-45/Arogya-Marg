@@ -142,74 +142,77 @@ export default function ReferralsPage() {
                   transition={{ delay: i * 0.03 }}
                   className={`card ${delayed ? "border-amber-300 bg-amber-50/30" : ""}`}
                 >
-                  <div className="p-4">
-                    <div className="flex items-start gap-4">
-                      {/* Status icon */}
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                        delayed ? "bg-amber-100" :
-                        ref.status === "COMPLETED" ? "bg-emerald-100" :
-                        ref.status === "EN_ROUTE" ? "bg-blue-100" :
-                        "bg-gray-100"
-                      }`}>
-                        {delayed ? (
-                          <Clock className="w-4 h-4 text-amber-600" />
-                        ) : ref.status === "COMPLETED" ? (
-                          <CheckCircle className="w-4 h-4 text-emerald-600" />
-                        ) : ref.status === "EN_ROUTE" ? (
-                          <Truck className="w-4 h-4 text-blue-600" />
-                        ) : (
-                          <Truck className="w-4 h-4 text-gray-500" />
-                        )}
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="font-mono text-xs font-semibold text-clinical-navy">{ref.referral_code}</span>
-                          <span className={`badge text-xs ${getStatusColor(ref.status)}`}>{ref.status}</span>
-                          <span className={`badge text-xs ${getUrgencyColor(ref.urgency)}`}>{ref.urgency}</span>
-                          {delayed && <span className="badge text-xs bg-amber-100 text-amber-800">DELAYED</span>}
-                          {ref.is_rerouted && <span className="badge text-xs bg-orange-50 text-orange-700">REROUTED</span>}
-                        </div>
-
-                        <p className="text-sm text-clinical-navy mb-2">{ref.reason}</p>
-
-                        {/* Route visualization */}
-                        <div className="flex items-center gap-1.5 text-xs text-clinical-muted">
-                          <MapPin className="w-3 h-3" />
-                          <span>{origin?.name || "Field"}</span>
-                          <ArrowRight className="w-3 h-3" />
-                          <span className="font-medium text-clinical-navy">{dest?.name || ref.destination_facility_id}</span>
-                          {ref.required_specialty && (
-                            <>
-                              <span className="text-clinical-muted">·</span>
-                              <span>{ref.required_specialty}</span>
-                            </>
+                  <div className="p-3 sm:p-4">
+                    <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+                      {/* Top icon and content */}
+                      <div className="flex items-start gap-3 flex-1 min-w-0 w-full">
+                        {/* Status icon */}
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          delayed ? "bg-amber-100" :
+                          ref.status === "COMPLETED" ? "bg-emerald-100" :
+                          ref.status === "EN_ROUTE" ? "bg-blue-100" :
+                          "bg-gray-100"
+                        }`}>
+                          {delayed ? (
+                            <Clock className="w-4 h-4 text-amber-600" />
+                          ) : ref.status === "COMPLETED" ? (
+                            <CheckCircle className="w-4 h-4 text-emerald-600" />
+                          ) : ref.status === "EN_ROUTE" ? (
+                            <Truck className="w-4 h-4 text-blue-600" />
+                          ) : (
+                            <Truck className="w-4 h-4 text-gray-500" />
                           )}
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 mt-2">
-                          <span className="text-xs text-clinical-muted">Created: {timeAgo(ref.created_at)}</span>
-                          {ref.accepted_at && (
-                            <span className="text-xs text-emerald-600">Accepted: {timeAgo(ref.accepted_at)}</span>
-                          )}
-                          {ref.expected_arrival && !["ARRIVED", "COMPLETED"].includes(ref.status) && (
-                            <span className={`text-xs ${delayed ? "text-red-600 font-semibold" : "text-clinical-muted"}`}>
-                              ETA: {new Date(ref.expected_arrival).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}
-                            </span>
-                          )}
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                            <span className="font-mono text-xs font-semibold text-clinical-navy">{ref.referral_code}</span>
+                            <span className={`badge text-[11px] sm:text-xs ${getStatusColor(ref.status)}`}>{ref.status}</span>
+                            <span className={`badge text-[11px] sm:text-xs ${getUrgencyColor(ref.urgency)}`}>{ref.urgency}</span>
+                            {delayed && <span className="badge text-[11px] sm:text-xs bg-amber-100 text-amber-800">DELAYED</span>}
+                            {ref.is_rerouted && <span className="badge text-[11px] sm:text-xs bg-orange-50 text-orange-700">REROUTED</span>}
+                          </div>
+
+                          <p className="text-xs sm:text-sm text-clinical-navy mb-1.5">{ref.reason}</p>
+
+                          {/* Route visualization */}
+                          <div className="flex flex-wrap items-center gap-1.5 text-xs text-clinical-muted">
+                            <MapPin className="w-3 h-3 flex-shrink-0" />
+                            <span>{origin?.name || "Field"}</span>
+                            <ArrowRight className="w-3 h-3 flex-shrink-0" />
+                            <span className="font-medium text-clinical-navy">{dest?.name || ref.destination_facility_id}</span>
+                            {ref.required_specialty && (
+                              <>
+                                <span className="text-clinical-muted">·</span>
+                                <span>{ref.required_specialty}</span>
+                              </>
+                            )}
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2">
+                            <span className="text-[11px] sm:text-xs text-clinical-muted">Created: {timeAgo(ref.created_at)}</span>
+                            {ref.accepted_at && (
+                              <span className="text-[11px] sm:text-xs text-emerald-600">Accepted: {timeAgo(ref.accepted_at)}</span>
+                            )}
+                            {ref.expected_arrival && !["ARRIVED", "COMPLETED"].includes(ref.status) && (
+                              <span className={`text-[11px] sm:text-xs ${delayed ? "text-red-600 font-semibold" : "text-clinical-muted"}`}>
+                                ETA: {new Date(ref.expected_arrival).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
 
                       {/* Actions */}
-                      <div className="flex flex-col gap-1.5 flex-shrink-0">
-                        <Link href={`/patients/${ref.patient_id}`} className="btn-secondary btn-sm">
+                      <div className="flex flex-wrap sm:flex-col gap-1.5 flex-shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-clinical-border justify-end">
+                        <Link href={`/patients/${ref.patient_id}`} className="btn-secondary btn-sm flex-1 sm:flex-initial text-center justify-center">
                           Patient →
                         </Link>
                         {ref.status === "PENDING" && (
                           <button
                             onClick={async () => { await referralsApi.accept(ref.id); loadData(); }}
-                            className="btn-primary btn-sm"
+                            className="btn-primary btn-sm flex-1 sm:flex-initial"
                           >
                             Accept
                           </button>
@@ -217,7 +220,7 @@ export default function ReferralsPage() {
                         {ref.status === "ACCEPTED" && (
                           <button
                             onClick={async () => { await referralsApi.arrive(ref.id); loadData(); }}
-                            className="btn-primary btn-sm"
+                            className="btn-primary btn-sm flex-1 sm:flex-initial"
                           >
                             Arrived
                           </button>
@@ -225,7 +228,7 @@ export default function ReferralsPage() {
                         {delayed && (
                           <button
                             onClick={() => setStuckReferral(ref)}
-                            className="btn-danger btn-sm"
+                            className="btn-danger btn-sm flex-1 sm:flex-initial"
                           >
                             Why stuck?
                           </button>

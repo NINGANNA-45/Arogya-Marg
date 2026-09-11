@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Wifi, WifiOff, Globe, Search } from "lucide-react";
+import { Bell, Wifi, WifiOff, Globe, Search, Menu } from "lucide-react";
 import { useAuthStore } from "@/lib/stores/authStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -7,21 +7,31 @@ import { useTranslation } from "react-i18next";
 interface TopbarProps {
   title: string;
   subtitle?: string;
+  onOpenMobileNav?: () => void;
 }
 
-export function Topbar({ title, subtitle }: TopbarProps) {
+export function Topbar({ title, subtitle, onOpenMobileNav }: TopbarProps) {
   const { user } = useAuthStore();
   const [isOnline] = useState(true);
   const { i18n } = useTranslation();
 
   return (
-    <header className="h-14 bg-white border-b border-clinical-border flex items-center px-6 gap-4 sticky top-0 z-30">
+    <header className="h-14 bg-white border-b border-clinical-border flex items-center px-3 sm:px-6 gap-2 sm:gap-4 sticky top-0 z-30">
+      {/* Mobile hamburger menu */}
+      <button
+        onClick={onOpenMobileNav}
+        className="md:hidden p-2 -ml-1 text-clinical-navy hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
+        aria-label="Open navigation menu"
+      >
+        <Menu className="w-5 h-5 text-clinical-navy" />
+      </button>
+
       {/* Title */}
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2">
-          <h1 className="text-base font-semibold text-clinical-navy truncate">{title}</h1>
+          <h1 className="text-sm sm:text-base font-semibold text-clinical-navy truncate">{title}</h1>
           {subtitle && (
-            <span className="text-sm text-clinical-muted hidden sm:block">{subtitle}</span>
+            <span className="text-xs sm:text-sm text-clinical-muted hidden md:inline truncate">{subtitle}</span>
           )}
         </div>
       </div>

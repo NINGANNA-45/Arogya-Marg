@@ -44,44 +44,46 @@ export default function PatientsPage() {
 
   return (
     <AppShell title="Patients" subtitle="Registry">
-      <div className="p-6 max-w-[1200px] mx-auto">
+      <div className="p-3 sm:p-6 max-w-[1200px] mx-auto">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-4 sm:mb-5">
           {/* Search */}
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-clinical-muted" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="input pl-9"
+              className="input pl-9 text-sm"
               placeholder="Search patient, ID, village..."
             />
           </div>
 
           {/* Filters */}
-          <select
-            value={riskFilter}
-            onChange={(e) => setRiskFilter(e.target.value)}
-            className="input w-36"
-          >
-            <option value="">All Risk</option>
-            {["LOW", "MEDIUM", "HIGH", "CRITICAL"].map((r) => (
-              <option key={r} value={r}>{r}</option>
-            ))}
-          </select>
+          <div className="flex gap-2 w-full sm:w-auto">
+            <select
+              value={riskFilter}
+              onChange={(e) => setRiskFilter(e.target.value)}
+              className="input flex-1 sm:w-36 text-xs sm:text-sm"
+            >
+              <option value="">All Risk</option>
+              {["LOW", "MEDIUM", "HIGH", "CRITICAL"].map((r) => (
+                <option key={r} value={r}>{r}</option>
+              ))}
+            </select>
 
-          <select
-            value={stateFilter}
-            onChange={(e) => setStateFilter(e.target.value)}
-            className="input w-44"
-          >
-            <option value="">All States</option>
-            {Object.entries(CAREPATH_LABELS).map(([k, v]) => (
-              <option key={k} value={k}>{v}</option>
-            ))}
-          </select>
+            <select
+              value={stateFilter}
+              onChange={(e) => setStateFilter(e.target.value)}
+              className="input flex-1 sm:w-44 text-xs sm:text-sm"
+            >
+              <option value="">All States</option>
+              {Object.entries(CAREPATH_LABELS).map(([k, v]) => (
+                <option key={k} value={k}>{v}</option>
+              ))}
+            </select>
+          </div>
 
-          <Link href="/patients/new" className="btn-primary whitespace-nowrap">
+          <Link href="/patients/new" className="btn-primary whitespace-nowrap justify-center text-sm py-2 sm:py-2.5">
             <UserPlus className="w-4 h-4" />
             Add Patient
           </Link>

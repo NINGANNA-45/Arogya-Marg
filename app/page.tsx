@@ -75,23 +75,23 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white font-sans">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 bg-teal-600 rounded-lg flex items-center justify-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="w-7 h-7 bg-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
               <Heart className="w-3.5 h-3.5 text-white" />
             </div>
             <div>
               <span className="text-sm font-bold text-gray-900">Arogya Marg</span>
-              <span className="text-xs text-gray-400 ml-2 hidden sm:inline">आरोग्य मार्ग</span>
+              <span className="text-xs text-gray-400 ml-1.5 sm:ml-2 hidden sm:inline">आरोग्य मार्ग</span>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-amber-600 font-medium bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+          <div className="flex items-center gap-2.5 sm:gap-4">
+            <span className="text-[11px] sm:text-xs text-amber-600 font-medium bg-amber-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-amber-200">
               Prototype
             </span>
             <Link
               href="/login"
-              className="bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors"
+              className="bg-teal-600 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-teal-700 transition-colors"
             >
               Enter Platform
             </Link>
@@ -100,34 +100,34 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-24 sm:pt-32 pb-14 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-teal-200 mb-6">
+            <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-teal-200 mb-4 sm:mb-6">
               <Shield className="w-3 h-3" />
               Health Tech Prototype
             </div>
-            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
               Arogya Marg
             </h1>
-            <p className="text-xl sm:text-2xl text-teal-600 font-semibold mb-4">
+            <p className="text-lg sm:text-2xl text-teal-600 font-semibold mb-3 sm:mb-4">
               Right Care. Right Place. Right Time.
             </p>
-            <p className="text-base text-gray-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-500 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
               An integrated care coordination platform connecting patients, frontline workers,
               clinicians and public-health facilities across the rural healthcare journey.
-              <span className="block mt-2 text-gray-400 text-sm italic">
+              <span className="block mt-2 text-gray-400 text-xs sm:text-sm italic">
                 Not a telemedicine app. Not a hospital dashboard. The coordination layer between them.
               </span>
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/login"
-                className="flex items-center gap-2 bg-teal-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-teal-700 transition-all shadow-md hover:shadow-lg"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-teal-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-teal-700 transition-all shadow-md hover:shadow-lg text-sm sm:text-base"
               >
                 Enter Platform <ArrowRight className="w-4 h-4" />
               </Link>
@@ -137,7 +137,7 @@ export default function LandingPage() {
       </section>
 
       {/* Patient Journey Visualization */}
-      <section className="py-16 bg-gray-50 border-y border-gray-100">
+      <section className="py-10 sm:py-16 bg-gray-50 border-y border-gray-100 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-8">
             The Rural Healthcare Journey — Coordinated

@@ -340,10 +340,10 @@ export default function FacilitiesPage() {
 
   return (
     <AppShell title="Facilities Directory" subtitle="Comprehensive view of healthcare centers & readiness across Pune District">
-      <div className="p-6 max-w-7xl mx-auto space-y-6">
+      <div className="p-3 sm:p-6 max-w-7xl mx-auto space-y-4 sm:space-y-6">
 
         {/* Top Summary Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div className="card p-4 flex items-center gap-3.5 border-l-4 border-l-teal-600 shadow-sm">
             <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0">
               <Building2 className="w-5 h-5" />
@@ -386,11 +386,11 @@ export default function FacilitiesPage() {
         </div>
 
         {/* Filter Toolbar */}
-        <div className="card p-4 space-y-3.5 bg-white border border-slate-200 shadow-sm rounded-xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div className="card p-3 sm:p-4 space-y-3 bg-white border border-slate-200 shadow-sm rounded-xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-3">
             
             {/* Search Input */}
-            <div className="relative flex-1 min-w-[260px]">
+            <div className="relative flex-1 w-full min-w-0">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
@@ -407,13 +407,13 @@ export default function FacilitiesPage() {
             </div>
 
             {/* Dropdowns & Controls */}
-            <div className="flex flex-wrap items-center gap-2.5">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full md:w-auto">
               
               {/* Type Filter */}
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
-                className="px-3 py-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                className="flex-1 sm:flex-initial min-w-[130px] px-3 py-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
               >
                 <option value="ALL">All Facility Types</option>
                 <option value="DISTRICT_HOSPITAL">District Hospital</option>
@@ -429,7 +429,7 @@ export default function FacilitiesPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-3 py-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                className="flex-1 sm:flex-initial min-w-[130px] px-3 py-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
               >
                 <option value="ALL">All Operational Statuses</option>
                 <option value="READY">Ready</option>

@@ -177,7 +177,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right panel */}
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 flex items-center justify-center p-3.5 sm:p-6">
         <div className="w-full max-w-xl">
           <AnimatePresence mode="wait">
             {!selectedRole ? (
@@ -188,16 +188,16 @@ export default function LoginPage() {
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.25 }}
               >
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-clinical-navy mb-2">
+                <div className="mb-5 sm:mb-8">
+                  <h2 className="text-xl sm:text-2xl font-bold text-clinical-navy mb-1.5 sm:mb-2">
                     How are you accessing Arogya Marg?
                   </h2>
-                  <p className="text-clinical-muted text-sm">
+                  <p className="text-clinical-muted text-xs sm:text-sm">
                     Select your role to see the right workspace for your work
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                   {roles.map((role) => {
                     const Icon = role.icon;
                     return (
@@ -207,21 +207,21 @@ export default function LoginPage() {
                           setSelectedRole(role);
                           fillDemo(role);
                         }}
-                        className={`flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all duration-150 ${role.bgColor}`}
+                        className={`flex items-start gap-3 p-3.5 sm:p-4 rounded-xl border-2 text-left transition-all duration-150 ${role.bgColor}`}
                       >
-                        <div className={`w-9 h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                          <Icon className={`w-4.5 h-4.5 ${role.color}`} />
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0 shadow-sm`}>
+                          <Icon className={`w-4 h-4 sm:w-4.5 sm:h-4.5 ${role.color}`} />
                         </div>
                         <div className="min-w-0">
-                          <p className={`text-sm font-semibold ${role.color}`}>{role.title}</p>
-                          <p className="text-xs text-clinical-muted mt-0.5">{role.responsibilities}</p>
+                          <p className={`text-xs sm:text-sm font-semibold ${role.color}`}>{role.title}</p>
+                          <p className="text-[11px] sm:text-xs text-clinical-muted mt-0.5">{role.responsibilities}</p>
                         </div>
                       </button>
                     );
                   })}
                 </div>
 
-                <p className="text-center text-xs text-clinical-muted-light mt-6">
+                <p className="text-center text-xs text-clinical-muted-light mt-5 sm:mt-6">
                   All accounts use{" "}
                   <span className="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-clinical-muted">demo1234</span>{" "}
                   as the password for the hackathon demo
@@ -237,21 +237,21 @@ export default function LoginPage() {
               >
                 <button
                   onClick={() => { setSelectedRole(null); setError(null); }}
-                  className="flex items-center gap-1.5 text-sm text-clinical-muted hover:text-clinical-navy mb-6 transition-colors"
+                  className="flex items-center gap-1.5 text-xs sm:text-sm text-clinical-muted hover:text-clinical-navy mb-4 sm:mb-6 transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" /> Change role
                 </button>
 
-                <div className="mb-8">
+                <div className="mb-6 sm:mb-8">
                   <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border-2 ${selectedRole.bgColor} ${selectedRole.color} mb-3`}>
                     <selectedRole.icon className="w-3 h-3" />
                     {selectedRole.title}
                   </div>
-                  <h2 className="text-2xl font-bold text-clinical-navy">{selectedRole.description}</h2>
-                  <p className="text-clinical-muted text-sm mt-1">{selectedRole.responsibilities}</p>
+                  <h2 className="text-xl sm:text-2xl font-bold text-clinical-navy">{selectedRole.description}</h2>
+                  <p className="text-clinical-muted text-xs sm:text-sm mt-1">{selectedRole.responsibilities}</p>
                 </div>
 
-                <div className="card p-6">
+                <div className="card p-4 sm:p-6">
                   {/* Demo credentials notice */}
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-5">
                     <p className="text-xs font-semibold text-amber-800 mb-1">Demo Credentials</p>
