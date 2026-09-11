@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -109,6 +109,19 @@ export default function LoginPage() {
   const [selectedRole, setSelectedRole] = useState<RoleOption | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const token = localStorage.getItem("am_token");
+    const userStr = localStorage.getItem("am_user");
+    if (token && userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        const redirect = roleRedirect[user.role as Role] || "/command-center";
+        router.replace(redirect);
+      } catch {}
+    }
+  }, [router]);
 
   const {
     register,

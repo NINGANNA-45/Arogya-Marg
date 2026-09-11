@@ -22,9 +22,15 @@ apiClient.interceptors.response.use(
   (r) => r,
   (error) => {
     if (error.response?.status === 401 && typeof window !== "undefined") {
-      localStorage.removeItem("am_token");
-      localStorage.removeItem("am_user");
-      window.location.href = "/login";
+      const url = error.config?.url || "";
+      const isAuthUrl = url.includes("/auth/login") || url.includes("/auth/signup");
+      if (!isAuthUrl) {
+        localStorage.removeItem("am_token");
+        localStorage.removeItem("am_user");
+        if (window.location.pathname !== "/login" && window.location.pathname !== "/signup") {
+          window.location.href = "/login";
+        }
+      }
     }
     return Promise.reject(error);
   }
