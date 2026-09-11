@@ -1,0 +1,10 @@
+{
+  "welcome": "Welcome back",
+  "dashboard": "Dashboard",
+  "patients": "Patients",
+  "referrals": "Referrals",
+  "network": "Network Map",
+  "analytics": "Analytics",
+  "add_patient": "Add Patient",
+  "logout": "Log Out"
+}
